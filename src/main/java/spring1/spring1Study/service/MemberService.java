@@ -2,13 +2,16 @@ package spring1.spring1Study.service;
 
 import spring1.spring1Study.domain.Member;
 import spring1.spring1Study.repository.MemberRepository;
-import spring1.spring1Study.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /*  회원가입  */
     public Long join(Member member){

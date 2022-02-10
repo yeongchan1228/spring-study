@@ -4,6 +4,7 @@ import spring1.spring1Study.domain.Member;
 
 import java.util.*;
 
+//@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     private static Map<Long, Member> store = new HashMap<>(); // 동시성 문제 때문에 실전에서는 컨커런트 해시맵 사용

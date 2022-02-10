@@ -1,14 +1,18 @@
 package spring1.spring1Study.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring1.spring1Study.domain.Member;
 import spring1.spring1Study.repository.MemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+//@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    //@Autowired // DI 의존관계 설정
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

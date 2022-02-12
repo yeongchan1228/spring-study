@@ -2,6 +2,7 @@ package spring1.spring1Study.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spring1.spring1Study.domain.Member;
 import spring1.spring1Study.repository.MemberRepository;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Service
+@Transactional // JPA를 사용하기 위해서, 데이터 베이스에 접근하는 class에 붙여야 한다.
 public class MemberService {
     private final MemberRepository memberRepository;
 

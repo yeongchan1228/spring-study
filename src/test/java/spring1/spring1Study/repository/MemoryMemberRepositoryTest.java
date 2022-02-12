@@ -1,6 +1,5 @@
 package spring1.spring1Study.repository;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import spring1.spring1Study.domain.Member;

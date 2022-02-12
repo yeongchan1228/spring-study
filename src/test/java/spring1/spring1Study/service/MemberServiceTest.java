@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberServiceTest {
-
+    /*단위 테스트 -> 순수 자바만을 사용해서 쉽고 빠르게 테스트 진행*/
     MemberService memberService;
     MemoryMemberRepository memberRepository;
 

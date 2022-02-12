@@ -21,6 +21,7 @@ public class MemberService {
 
     /*  회원가입  */
     public Long join(Member member){
+
         // 같은 이름 회원 X
         validateDuplicateMember(member);
 
@@ -31,9 +32,9 @@ public class MemberService {
 
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())
-            .ifPresent(m -> {
-                throw new IllegalStateException("이미 존재하는 회원입니다.");
-            });
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
     }
 
     /*  전체 회원 조회  */

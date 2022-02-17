@@ -8,8 +8,11 @@ import spring2.spring2Study.order.OrderServiceImpl;
 public class OrderApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+
+        AppConfig appConfig = new AppConfig();
+
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Member memberA = new Member(1L, "memberA", Grade.VIP);
 

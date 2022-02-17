@@ -2,6 +2,7 @@ package spring2.spring2Study.order;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import spring2.spring2Study.AppConfig;
 import spring2.spring2Study.member.Grade;
 import spring2.spring2Study.member.Member;
 import spring2.spring2Study.member.MemberService;
@@ -9,8 +10,10 @@ import spring2.spring2Study.member.MemberServiceImpl;
 
 public class OrderServiceTest {
 
-    private final OrderService orderService = new OrderServiceImpl();
-    private final MemberService memberService = new MemberServiceImpl();
+    AppConfig appConfig = new AppConfig();
+
+    MemberService memberService = appConfig.memberService();
+    OrderService orderService = appConfig.orderService();
 
     @Test
     public void order(){

@@ -2,12 +2,15 @@ package spring2.spring2Study.member;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import spring2.spring2Study.AppConfig;
 
 import static org.assertj.core.api.Assertions.*;
 
 public class MemberServiceTest {
 
-    private final MemberService memberService = new MemberServiceImpl();
+    AppConfig appConfig = new AppConfig();
+
+    MemberService memberService = appConfig.memberService();
 
     @Test
     void join(){

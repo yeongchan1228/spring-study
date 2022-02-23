@@ -1,5 +1,6 @@
 package spring2.spring2Study.order;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -9,18 +10,22 @@ import spring2.spring2Study.discount.RateDiscountPolicy;
 import spring2.spring2Study.member.Member;
 import spring2.spring2Study.member.MemberRepository;
 
+
 @Service
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository; // final -> 무조건 값이 존재해야 한다.
+    private final MemberRepository memberRepository; // final -> 무조건 값이 존재해야 한다. 값이 불변이다.
     //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
     private final DiscountPolicy discountPolicy;
 
-    @Autowired // ac.getBean(MemberRepository.class)...
+    
+    /*@RequiredArgsConstructor가 이 부분을 생성해준다. final이 붙은 필드에 해당하는 생성자*/
+   /* @Autowired // ac.getBean(MemberRepository.class)...
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }
+    }*/
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

@@ -22,9 +22,16 @@ public class OrderServiceImpl implements OrderService{
     
     /*@RequiredArgsConstructor가 이 부분을 생성해준다. final이 붙은 필드에 해당하는 생성자*/
    /* @Autowired // ac.getBean(MemberRepository.class)...
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
+    }*/
+
+    /*DiscountPolicy의 빈이 두 개일 경우 필드명으로 선택 주입할 수 있다.*/
+   /* @Autowired // ac.getBean(MemberRepository.class)...
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = rateDiscountPolicy;
     }*/
 
     @Override

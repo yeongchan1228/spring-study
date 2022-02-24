@@ -7,7 +7,7 @@ import spring2.spring2Study.member.Grade;
 import spring2.spring2Study.member.Member;
 
 @Component
-@Primary // 동일 빈에 대한 우선 순위를 준다.
+//@Primary // 동일 빈에 대한 우선 순위를 준다.
 //@Qualifier("mainDiscountPolicy") // 별명 느낌 DiscountPolicy 클래스의 빈이 2개일 경우 Qualifier로 구분 가능하다.
 public class RateDiscountPolicy implements DiscountPolicy{
 

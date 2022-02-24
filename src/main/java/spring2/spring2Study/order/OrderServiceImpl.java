@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import spring2.spring2Study.annotation.MainDiscountPolicy;
 import spring2.spring2Study.discount.DiscountPolicy;
 import spring2.spring2Study.discount.FixDiscountPolicy;
 import spring2.spring2Study.discount.RateDiscountPolicy;
@@ -12,7 +13,7 @@ import spring2.spring2Study.member.MemberRepository;
 
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository; // final -> 무조건 값이 존재해야 한다. 값이 불변이다.
@@ -33,6 +34,13 @@ public class OrderServiceImpl implements OrderService{
         this.memberRepository = memberRepository;
         this.discountPolicy = rateDiscountPolicy;
     }*/
+
+   @Autowired // ac.getBean(MemberRepository.class)...
+    public OrderServiceImpl(MemberRepository memberRepository,@MainDiscountPolicy DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

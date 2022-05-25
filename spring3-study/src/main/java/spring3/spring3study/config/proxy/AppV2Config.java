@@ -15,11 +15,11 @@ public class AppV2Config {
 
     @Bean
     public OrderServiceV2 createOrderServiceV2() {
-        return new OrderServiceV2(createOrderRepository());
+        return new OrderServiceV2(createOrderRepositoryV2());
     }
 
     @Bean
-    public OrderRepositoryV2 createOrderRepository() {
+    public OrderRepositoryV2 createOrderRepositoryV2() {
         return new OrderRepositoryV2();
     }
 }

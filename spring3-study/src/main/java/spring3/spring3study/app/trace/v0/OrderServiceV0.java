@@ -1,4 +1,4 @@
-package spring3.spring3study.app.v0;
+package spring3.spring3study.app.trace.v0;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

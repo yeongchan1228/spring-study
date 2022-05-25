@@ -1,9 +1,8 @@
-package spring3.spring3study.app.v6;
+package spring3.spring3study.app.trace.v6;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import spring3.spring3study.trace.logtrace.LogTrace;
 import spring3.spring3study.trace.template.callback.TraceTemplate;
 
 @RestController

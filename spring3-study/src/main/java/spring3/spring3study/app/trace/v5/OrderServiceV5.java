@@ -1,8 +1,7 @@
-package spring3.spring3study.app.v5;
+package spring3.spring3study.app.trace.v5;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import spring3.spring3study.trace.TraceStatus;
 import spring3.spring3study.trace.logtrace.ThreadLocalLogTrace;
 import spring3.spring3study.trace.template.AbstractTemplate;
 

@@ -1,25 +1,25 @@
-package spring3.spring3study.app.v3;
+package spring3.spring3study.app.trace.v1;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import spring3.spring3study.trace.TraceStatus;
-import spring3.spring3study.trace.logtrace.LogTrace;
+import spring3.spring3study.trace.v1.TraceV1;
 
 @Service
 @RequiredArgsConstructor
-public class OrderServiceV3 {
+public class OrderServiceV1 {
 
-    private final OrderRepositoryV3 orderRepository;
-    private final LogTrace logTrace;
+    private final OrderRepositoryV1 orderRepository;
+    private final TraceV1 traceV1;
 
     public void orderItem(String itemId){
         TraceStatus status = null;
         try {
-            status = logTrace.begin("OrderService.orderItem()");
+            status = traceV1.begin("OrderService.orderItem()");
             orderRepository.save(itemId);
-            logTrace.end(status);
+            traceV1.end(status);
         }catch (Exception e){
-            logTrace.exception(status, e);
+            traceV1.exception(status, e);
             throw e;
         }
     }

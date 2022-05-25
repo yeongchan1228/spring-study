@@ -1,28 +1,27 @@
-package spring3.spring3study.app.v1;
+package spring3.spring3study.app.trace.v2;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import spring3.spring3study.app.v0.OrderServiceV0;
 import spring3.spring3study.trace.TraceStatus;
-import spring3.spring3study.trace.v1.TraceV1;
+import spring3.spring3study.trace.v2.TraceV2;
 
 @RestController
 @RequiredArgsConstructor
-public class  OrderControllerV1 {
+public class OrderControllerV2 {
 
-    private final OrderServiceV1 orderService;
-    private final TraceV1 traceV1;
+    private final OrderServiceV2 orderService;
+    private final TraceV2 traceV2;
 
-    @GetMapping("/v1/request")
+    @GetMapping("/v2/request")
     public String request(String itemId){
         TraceStatus status = null;
         try {
-            status = traceV1.begin("OrderController.request()");
-            orderService.orderItem(itemId);
-            traceV1.end(status);
+            status = traceV2.begin("OrderController.request()");
+            orderService.orderItem(itemId, status);
+            traceV2.end(status);
         }catch (Exception e){
-            traceV1.exception(status, e);
+            traceV2.exception(status, e);
             // 예외를 먹어버리기 때문에 예외를 던져주어야 한다.
             throw e;
         }

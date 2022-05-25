@@ -1,24 +1,28 @@
-package spring3.spring3study.app.v6;
+package spring3.spring3study.app.trace.v4;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import spring3.spring3study.trace.TraceStatus;
 import spring3.spring3study.trace.logtrace.ThreadLocalLogTrace;
-import spring3.spring3study.trace.template.AbstractTemplate;
-import spring3.spring3study.trace.template.callback.TraceTemplate;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderRepositoryV6 {
+public class OrderRepositoryV4 {
 
-    private final TraceTemplate traceTemplate;
+    private final ThreadLocalLogTrace logTrace;
 
     public void save(String itemId){
-        traceTemplate.execute("OrderRepository.save()", () -> {
+        TraceStatus status = null;
+        try {
+            status = logTrace.begin("OrderRepository.save()");
+            // 저장 로직
             if(itemId.equals("ex")) throw new IllegalStateException("예외 발생!");
             sleep(1000);
-            return null;
-        });
-
+            logTrace.end(status);
+        }catch (Exception e){
+            logTrace.exception(status, e);
+            throw e;
+        }
     }
 
     private void sleep(int millis) {

@@ -1,4 +1,4 @@
-package spring3.spring3study.config;
+package spring3.spring3study.config.trace;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

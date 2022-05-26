@@ -1,9 +1,9 @@
-package spring3.spring3study.proxy.pureproxy;
+package spring3.spring3study.proxy.pureproxy.proxy;
 
 import org.junit.jupiter.api.Test;
-import spring3.spring3study.proxy.pureproxy.code.CacheProxy;
-import spring3.spring3study.proxy.pureproxy.code.ProxyPatternClient;
-import spring3.spring3study.proxy.pureproxy.code.RealSubject;
+import spring3.spring3study.proxy.pureproxy.proxy.code.CacheProxy;
+import spring3.spring3study.proxy.pureproxy.proxy.code.ProxyPatternClient;
+import spring3.spring3study.proxy.pureproxy.proxy.code.RealSubject;
 
 public class ProxyPatternTest {
 

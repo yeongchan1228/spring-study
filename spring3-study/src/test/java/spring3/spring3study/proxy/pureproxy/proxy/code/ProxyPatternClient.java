@@ -1,4 +1,4 @@
-package spring3.spring3study.proxy.pureproxy.code;
+package spring3.spring3study.proxy.pureproxy.proxy.code;
 
 public class ProxyPatternClient {
 

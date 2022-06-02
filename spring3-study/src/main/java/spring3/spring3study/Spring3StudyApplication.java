@@ -10,6 +10,7 @@ import spring3.spring3study.config.proxy.v1_proxy.concrete_proxy.ConcreteProxyCo
 import spring3.spring3study.config.proxy.v1_proxy.interface_proxy.InterfaceProxyConfig;
 import spring3.spring3study.config.proxy.v2_dynamicproxy.DynamicProxyBasicConfig;
 import spring3.spring3study.config.proxy.v2_dynamicproxy.DynamicProxyFilterConfig;
+import spring3.spring3study.config.proxy.v3_proxyfactory.ProxyFactoryConfigV1;
 import spring3.spring3study.trace.logtrace.LogTrace;
 import spring3.spring3study.trace.logtrace.ThreadLocalLogTrace;
 
@@ -17,7 +18,8 @@ import spring3.spring3study.trace.logtrace.ThreadLocalLogTrace;
 //@Import({InterfaceProxyConfig.class})
 //@Import({ConcreteProxyConfig.class})
 //@Import(value = {DynamicProxyBasicConfig.class})
-@Import(value = {DynamicProxyFilterConfig.class})
+//@Import(value = {DynamicProxyFilterConfig.class})
+@Import(value = {ProxyFactoryConfigV1.class})
 @SpringBootApplication(scanBasePackages = "spring3.spring3study.app.proxy")
 public class Spring3StudyApplication {
 

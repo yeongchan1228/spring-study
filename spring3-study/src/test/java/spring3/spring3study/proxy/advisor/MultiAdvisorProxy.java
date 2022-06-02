@@ -38,6 +38,25 @@ public class MultiAdvisorProxy {
         proxy2.find();
     }
 
+    @Test
+    @DisplayName("하나의 Proxy, 여러 Advisor")
+    public void multiAdvisorTest2() throws Exception {
+        // given
+        DefaultPointcutAdvisor advisor1 = new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice1());
+        DefaultPointcutAdvisor advisor2 = new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice2());
+
+        ServiceInterface target = new ServiceImpl();
+        ProxyFactory proxyFactory = new ProxyFactory(target);
+
+        // Advisor 순서대로 적용해야 한다.
+        proxyFactory.addAdvisor(advisor2);
+        proxyFactory.addAdvisor(advisor1);
+        ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
+
+        proxy.save();
+
+    }
+
     @Slf4j
     static class Advice1 implements MethodInterceptor{
 

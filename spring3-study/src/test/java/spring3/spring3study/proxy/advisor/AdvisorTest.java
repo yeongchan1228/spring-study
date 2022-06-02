@@ -8,6 +8,7 @@ import org.springframework.aop.MethodMatcher;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
+import org.springframework.aop.support.NameMatchMethodPointcut;
 import spring3.spring3study.proxy.common.advice.TimeAdvice;
 import spring3.spring3study.proxy.common.service.ServiceImpl;
 import spring3.spring3study.proxy.common.service.ServiceInterface;
@@ -39,6 +40,24 @@ public class AdvisorTest {
         ProxyFactory proxyFactory = new ProxyFactory(target);
         // Advice는 Class, Method Filter가 둘 다 참인 경우 동작
         DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(new MyPointCut(), new TimeAdvice());
+        proxyFactory.addAdvisor(advisor);
+        ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
+
+        // when
+        proxy.save();
+        proxy.find();
+    }
+
+    @Test
+    @DisplayName("Spring이 제공하는 PointCut")
+    public void advisorTest3() throws Exception {
+        // given
+        ServiceInterface target = new ServiceImpl();
+        ProxyFactory proxyFactory = new ProxyFactory(target);
+
+        NameMatchMethodPointcut methodPointcut = new NameMatchMethodPointcut();
+        methodPointcut.addMethodName("save");
+        DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(methodPointcut, new TimeAdvice());
         proxyFactory.addAdvisor(advisor);
         ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
 

@@ -6,16 +6,13 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import springstudy.springaopstudy.order.aop.AspectV1;
-import springstudy.springaopstudy.order.aop.AspectV2;
-import springstudy.springaopstudy.order.aop.AspectV3;
-import springstudy.springaopstudy.order.aop.AspectV4Pointcut;
+import springstudy.springaopstudy.order.aop.*;
 
 import static org.assertj.core.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
-@Import(value = {AspectV4Pointcut.class})
+@Import(value = {AspectV5Order.LogAspect.class, AspectV5Order.TransactionAspect.class})
 public class AopTest {
     
     @Autowired OrderRepository orderRepository;

@@ -9,12 +9,13 @@ import org.springframework.context.annotation.Import;
 import springstudy.springaopstudy.order.aop.AspectV1;
 import springstudy.springaopstudy.order.aop.AspectV2;
 import springstudy.springaopstudy.order.aop.AspectV3;
+import springstudy.springaopstudy.order.aop.AspectV4Pointcut;
 
 import static org.assertj.core.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
-@Import(value = {AspectV3.class})
+@Import(value = {AspectV4Pointcut.class})
 public class AopTest {
     
     @Autowired OrderRepository orderRepository;

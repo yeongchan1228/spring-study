@@ -84,4 +84,65 @@ public class ExecutionTest {
         pointcut.setExpression("execution(* springstudy.springaopstudy..*.*(..))");
         assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
     }
+
+    @Test
+    @DisplayName("부모 타입으로 매칭")
+    public void superTypeMatch() throws Exception {
+        pointcut.setExpression("execution(* springstudy.springaopstudy.member.MemberService.*(..))");
+        assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+    @Test
+    @DisplayName("Not Override Method 매칭")
+    public void typeMatchInternal() throws Exception {
+        pointcut.setExpression("execution(* springstudy.springaopstudy.member.MemberService.*(..))");
+        Method internal = MemberServiceImpl.class.getMethod("internal", String.class);
+        assertThat(pointcut.matches(internal, MemberServiceImpl.class)).isFalse();
+
+        pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("execution(* springstudy.springaopstudy.member.MemberServiceImpl.*(..))");
+        assertThat(pointcut.matches(internal, MemberServiceImpl.class)).isTrue();
+    }
+    
+    @Test
+    @DisplayName("args Match")
+    public void argsMatch() throws Exception {
+        pointcut.setExpression("execution(* *(String))");
+        assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+    @Test
+    @DisplayName("noArgs Match")
+    public void noArgsMatchFalse() throws Exception {
+        pointcut.setExpression("execution(* *())"); // 파라미터가 아무 것도 없어야 하는데 hello는 String이 존재한다.
+        assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isFalse();
+    }
+
+    @Test
+    @DisplayName("파라미터가 한 개, 종류 무관")
+    public void noArgsMatch() throws Exception {
+        pointcut.setExpression("execution(* *(*))");
+        assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+    @Test
+    @DisplayName("파라미터 수 무관, 종류 무관")
+    public void noArgsMatch2() throws Exception {
+        pointcut.setExpression("execution(* *(..))");
+        assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
+
+    @Test
+    @DisplayName("파라미터 수 2개, 종류 String 시작, 이 후 무관")
+    public void noArgsMatch3False() throws Exception {
+        pointcut.setExpression("execution(* *(String, *))");
+        assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isFalse();
+    }
+
+    @Test
+    @DisplayName("파라미터 수 무관, 종류 String 시작, 이 후 무관")
+    public void noArgsMatch4() throws Exception {
+        pointcut.setExpression("execution(* *(String, ..))");
+        assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
+    }
 }

@@ -1,6 +1,7 @@
 package springstudy.springaopstudy.exam;
 
 import org.springframework.stereotype.Repository;
+import springstudy.springaopstudy.exam.annotation.Trace;
 
 @Repository
 public class ExamRepository {
@@ -10,6 +11,7 @@ public class ExamRepository {
     /**
      * 5번에 한 번 실패
      */
+    @Trace
     public String save(String itemId){
         seq++;
         if(seq % 5 == 0){

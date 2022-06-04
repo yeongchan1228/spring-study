@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
-@Import(value = {AspectV5Order.LogAspect.class, AspectV5Order.TransactionAspect.class})
+@Import(value = {AspectV6Advice.class})
 public class AopTest {
     
     @Autowired OrderRepository orderRepository;

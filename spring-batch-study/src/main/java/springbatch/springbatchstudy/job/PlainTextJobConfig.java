@@ -17,7 +17,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Sort;
 import springbatch.springbatchstudy.core.domain.PlainText;
+import springbatch.springbatchstudy.core.domain.ResultText;
 import springbatch.springbatchstudy.core.repository.PlainTextRepository;
+import springbatch.springbatchstudy.core.repository.ResultTextRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,6 +31,7 @@ public class PlainTextJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final PlainTextRepository plainTextRepository;
+    private final ResultTextRepository resultTextRepository;
 
     @Bean("plainTextJob")
     public Job plainTextJob(Step plainTextStep) {
@@ -74,7 +77,7 @@ public class PlainTextJobConfig {
    @StepScope
    public ItemWriter<String> plainTextWriter() {
         return items -> {
-            items.forEach(System.out::println);
+            items.forEach(item -> resultTextRepository.save(new ResultText(null, item)));
             System.out.println("======= chunk is finished");
         };
    }

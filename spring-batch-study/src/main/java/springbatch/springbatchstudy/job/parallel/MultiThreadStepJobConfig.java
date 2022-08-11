@@ -37,20 +37,20 @@ public class MultiThreadStepJobConfig {
     private final StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job multiThreadStepJob(Step multiThreadJob) {
-        return jobBuilderFactory.get("multiThreadStepJob")
+    public Job multiThreadJob(Step amountFileStep) {
+        return jobBuilderFactory.get("multiThreadJob")
                 .incrementer(new RunIdIncrementer())
-                .start(multiThreadJob)
+                .start(amountFileStep)
                 .build();
     }
 
     @Bean
     @JobScope
-    public Step multiThreadJob(FlatFileItemReader amountFileItemReader,
+    public Step amountFileStep(FlatFileItemReader amountFileItemReader,
                                ItemProcessor itemProcessor,
                                FlatFileItemWriter amountFileItemWriter,
                                TaskExecutor taskExecutor) {
-        return stepBuilderFactory.get("multiThreadJob")
+        return stepBuilderFactory.get("amountFileStep")
                 .<AmountDto, AmountDto>chunk(10)
                 .reader(amountFileItemReader)
                 .processor(itemProcessor)

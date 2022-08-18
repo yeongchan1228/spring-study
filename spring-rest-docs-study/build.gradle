@@ -44,8 +44,12 @@ test {
 
 asciidoctor {
 	inputs.dir snippetsDir
+	sources {
+		include '**/index.adoc'
+	}
 	configurations 'asciidoctorExtensions'
 	dependsOn test
+	baseDirFollowsSourceFile()
 }
 
 task copyDocument(type: Copy) {

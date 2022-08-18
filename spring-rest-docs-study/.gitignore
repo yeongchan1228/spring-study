@@ -37,3 +37,4 @@ out/
 .vscode/
 
 /client
+src/test/resources/json/member

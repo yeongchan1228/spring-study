@@ -23,12 +23,12 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ExtendWith(RestDocumentationExtension.class)
 @Import(RestDocsConfiguration.class)
+@ExtendWith(RestDocumentationExtension.class)
 public class TestSupport {
 
     @Autowired protected MockMvc mockMvc;
-    @Autowired protected RestDocumentationResultHandler write;
+    @Autowired protected RestDocumentationResultHandler restDocs;
     @Autowired private ResourceLoader resourceLoader;
 
     @BeforeEach
@@ -36,7 +36,7 @@ public class TestSupport {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
                 .apply(documentationConfiguration(restDocumentation))
                 .alwaysDo(MockMvcResultHandlers.print()) // andDo(print()) 대체
-                .alwaysDo(write) // .andDo(document("{class-name}/{method-name}")); 및 JSON 알아보기 쉽게 대체
+                .alwaysDo(restDocs) // .andDo(document("{class-name}/{method-name}")); 및 JSON 알아보기 쉽게 대체
                 .build();
 //                .apply(springSecurity()).build(); // spring secutiry 쓰고있으면 추가함
     }

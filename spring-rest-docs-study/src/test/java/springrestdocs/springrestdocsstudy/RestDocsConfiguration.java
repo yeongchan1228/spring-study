@@ -14,7 +14,7 @@ public class RestDocsConfiguration {
      * JSON 응답, 요청 형식을 알아보기 쉽게 만들기 위한 설정
      */
     @Bean
-    public RestDocumentationResultHandler write() {
+    public RestDocumentationResultHandler restDocs() {
         return MockMvcRestDocumentation.document(
                 "{class-name}/{method-name}",
                 Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
